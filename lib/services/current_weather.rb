@@ -1,7 +1,7 @@
 require 'httparty'
 require 'json'
 require 'dotenv'
-Dotenv.load('../../.env')
+Dotenv.load('.env')
 
 class CurrentWeather
   include HTTParty
@@ -9,14 +9,12 @@ class CurrentWeather
   base_uri 'https://api.openweathermap.org/data/2.5'
 
   def retrieve_current_weather_name(city_name)
-    api_key = '4e0c46c583623427c8a51f370e0dddb8'
-    # api_key = ENV['API_KEY']
+    api_key = ENV['API_KEY']
     @latest_weather_data = JSON.parse(self.class.get("/weather?q=#{city_name}&appid=#{api_key}").body)
   end
 
   def retrieve_current_weather_id(city_id)
-    api_key = '4e0c46c583623427c8a51f370e0dddb8'
-    # api_key = ENV['API_KEY']
+    api_key = ENV['API_KEY']
     @latest_weather_data = JSON.parse(self.class.get("/weather?id=#{city_id}&appid=#{api_key}").body)
   end
 
@@ -153,6 +151,5 @@ class CurrentWeather
   end
 end
 
-# test = CurrentWeather.new
-# p test.retrieve_current_weather_name('London')
-# p test.getidhash
+test = CurrentWeather.new
+p test.retrieve_current_weather_id('2172797')

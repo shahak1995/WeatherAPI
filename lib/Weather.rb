@@ -7,6 +7,6 @@ class Weather
   end
 
   def fivedayWeather
-    five_day_weather.new
+    FiveDayWeather.new
   end
 end
