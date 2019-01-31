@@ -55,15 +55,21 @@ describe 'latest five day forecast weather data through name and id' do
       end 
     end 
 
-    it 'should return all of the pressure keys in the main hash as a float data type' do
+    it 'should return all of the pressure keys in the main hash as a float or integer data type' do
       @current.get_all_pressure.each do |pressure|
         expect(pressure).to be_kind_of(Float) | be_kind_of(Integer)
       end 
     end 
 
-    it 'should return all of the pressure keys in the main hash as a float data type' do
-      @current.get_all_pressure.each do |pressure|
-        expect(pressure).to be_kind_of(Float) | be_kind_of(Integer)
+    it 'should return all of the sea level keys in the main hash as a float or integer data type' do
+      @current.get_all_sea_level.each do |sea_level|
+        expect(sea_level).to be_kind_of(Float) | be_kind_of(Integer)
+      end 
+    end 
+
+    it 'should return all of the grnd level keys in the main hash as a float or integer data type' do
+      @current.get_all_grnd_level.each do |grnd_level|
+        expect(grnd_level).to be_kind_of(Float) | be_kind_of(Integer)
       end 
     end 
   end 

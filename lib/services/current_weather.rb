@@ -4,15 +4,20 @@ require 'dotenv'
 Dotenv.load('.env')
 
 class CurrentWeather
+
+  # Includes all of the classes from HTTParty to use within this class
   include HTTParty
 
+  # The base uri for the API we will be using
   base_uri 'https://api.openweathermap.org/data/2.5'
 
+  # Method to retrieve current weather from the API and parse it through JSON using city name
   def retrieve_current_weather_name(city_name)
     api_key = ENV['API_KEY']
     @latest_weather_data = JSON.parse(self.class.get("/weather?q=#{city_name}&appid=#{api_key}").body)
   end
 
+  # Method to retrieve current weather fromt the API and parse it through JSON using city ID
   def retrieve_current_weather_id(city_id)
     api_key = ENV['API_KEY']
     @latest_weather_data = JSON.parse(self.class.get("/weather?id=#{city_id}&appid=#{api_key}").body)

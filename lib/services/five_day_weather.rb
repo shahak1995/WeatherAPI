@@ -4,15 +4,20 @@ require 'dotenv'
 Dotenv.load('.env')
 
 class FiveDayWeather
+
+  # Includes all of the classes from HTTParty to use within this class
   include HTTParty
 
+  # The base uri for the API we will be using
   base_uri 'https://api.openweathermap.org/data/2.5'
 
+  # Method to retrieve five day forecast weather from the API and parse it through JSON using city name
   def retrieve_five_day_weather_name(city_name)
     api_key = ENV['API_KEY']
     @latest_five_day_weather_data = JSON.parse(self.class.get("/forecast?q=#{city_name}&appid=#{api_key}").body)
   end
 
+  # Method to retrieve five day forecast weather from the API and parse it through JSON using city ID
   def retrieve_five_day_weather_id(city_id)
     api_key = ENV['API_KEY']
     @latest_five_day_weather_data = JSON.parse(self.class.get("/forecast?id=#{city_id}&appid=#{api_key}").body)
@@ -85,9 +90,17 @@ class FiveDayWeather
   def get_all_sea_level
     sea_level = []
     get_all_main.each do |all|
-      sea_level << all['pressure']
+      sea_level << all['sea_level']
     end 
-    pressure
+    sea_level
+  end 
+
+  def get_all_grnd_level
+    grnd_level = []
+    get_all_main.each do |all|
+      grnd_level << all['grnd_level']
+    end 
+    grnd_level
   end 
 end
   
