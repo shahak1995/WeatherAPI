@@ -72,5 +72,17 @@ describe 'latest five day forecast weather data through name and id' do
         expect(grnd_level).to be_kind_of(Float) | be_kind_of(Integer)
       end 
     end 
+
+    it 'should return all of the humidity level keys in the main hash as a integer data type' do
+      @current.get_all_humidity.each do |humidity|
+        expect(humidity).to be_kind_of(Integer)
+      end 
+    end 
+
+    it 'should return all of the temp_kf level keys in the main hash as a float or integer data type' do
+      @current.get_all_temp_kf.each do |temp_kf|
+        expect(temp_kf).to be_kind_of(Float) | be_kind_of(Integer)
+      end 
+    end 
   end 
 end 

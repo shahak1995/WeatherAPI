@@ -102,6 +102,22 @@ class FiveDayWeather
     end 
     grnd_level
   end 
+
+  def get_all_humidity
+    humidity = []
+    get_all_main.each do |all|
+      humidity << all['humidity']
+    end 
+    humidity
+  end 
+
+  def get_all_temp_kf
+    temp_kf = []
+    get_all_main.each do |all|
+      temp_kf << all['temp_kf']
+    end 
+    temp_kf
+  end 
 end
   
 
