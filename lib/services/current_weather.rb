@@ -4,7 +4,6 @@ require 'dotenv'
 Dotenv.load('.env')
 
 class CurrentWeather
-
   # Includes all of the classes from HTTParty to use within this class
   include HTTParty
 
@@ -109,7 +108,7 @@ class CurrentWeather
 
   def getall
     getclouds['all']
-  end 
+  end
 
   def getdt
     @latest_weather_data['dt']
@@ -155,6 +154,3 @@ class CurrentWeather
     @latest_weather_data['cod']
   end
 end
-
-test = CurrentWeather.new
-p test.retrieve_current_weather_id('2172797')
